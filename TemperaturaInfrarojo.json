@@ -1,0 +1,221 @@
+[
+    {
+        "id": "ab1d2b4ba302bd4d",
+        "type": "tab",
+        "label": "Flow 7",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b51adb1182d0ff05",
+        "type": "mqtt in",
+        "z": "ab1d2b4ba302bd4d",
+        "name": "",
+        "topic": "FCaEI/mqtt/GMA/TemAmbObj",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "dbb2841f278f706f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 100,
+        "wires": [
+            [
+                "1481c6922ebb7bc8"
+            ]
+        ]
+    },
+    {
+        "id": "e7971691c1573386",
+        "type": "debug",
+        "z": "ab1d2b4ba302bd4d",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1481c6922ebb7bc8",
+        "type": "json",
+        "z": "ab1d2b4ba302bd4d",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 490,
+        "y": 80,
+        "wires": [
+            [
+                "ebb6642fce4d5af7",
+                "d4f4bbd3d7b9a538"
+            ]
+        ]
+    },
+    {
+        "id": "ebb6642fce4d5af7",
+        "type": "function",
+        "z": "ab1d2b4ba302bd4d",
+        "name": "Temperatura ambiente",
+        "func": "msg.payload = msg.payload.tempAbt;\nmsg.topic = \"Temperatura ambiente\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 80,
+        "wires": [
+            [
+                "e7971691c1573386",
+                "26d82ad91275a939"
+            ]
+        ]
+    },
+    {
+        "id": "d4f4bbd3d7b9a538",
+        "type": "function",
+        "z": "ab1d2b4ba302bd4d",
+        "name": "Temperatura del objeto",
+        "func": "msg.payload = msg.payload.tempObj;\nmsg.topic = \"Temperatura del objeto\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 340,
+        "wires": [
+            [
+                "3378c29916710bfb",
+                "b289a93b456cdd48"
+            ]
+        ]
+    },
+    {
+        "id": "3378c29916710bfb",
+        "type": "debug",
+        "z": "ab1d2b4ba302bd4d",
+        "name": "debug 22",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "26d82ad91275a939",
+        "type": "ui_gauge",
+        "z": "ab1d2b4ba302bd4d",
+        "name": "Temperatura Ambiente",
+        "group": "d1188c543a84a14e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Temperatura Ambiente",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 880,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b289a93b456cdd48",
+        "type": "ui_gauge",
+        "z": "ab1d2b4ba302bd4d",
+        "name": "Temperatura Objeto",
+        "group": "d1188c543a84a14e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Temperatura Objeto",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 860,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "dbb2841f278f706f",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d1188c543a84a14e",
+        "type": "ui_group",
+        "name": "Valores de temperatura",
+        "tab": "fa4b9048fca76f84",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fa4b9048fca76f84",
+        "type": "ui_tab",
+        "name": "Temperaturas del ambiente y objeto",
+        "icon": "dashboard",
+        "order": 18,
+        "disabled": false,
+        "hidden": false
+    }
+]
